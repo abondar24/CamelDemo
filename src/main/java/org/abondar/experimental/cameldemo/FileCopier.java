@@ -1,4 +1,4 @@
-package org.abondar.experimental.cameldemo.basics;
+package org.abondar.experimental.cameldemo;
 
 
 import org.apache.camel.CamelContext;
