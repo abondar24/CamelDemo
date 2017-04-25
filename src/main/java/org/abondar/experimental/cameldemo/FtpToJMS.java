@@ -19,7 +19,7 @@ public class FtpToJMS {
         camelContext.addRoutes(new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                from("ftp://172.17.0.4?username=abondar&password=berkley217")
+                from("ftp://172.17.0.4?username=abondar&password=admin123")
                         .process(exchange ->
                                 System.out.println("SS-21: "+exchange.getIn().getHeader("CamelFileName")))
                         .to("jms:queueSS1");
