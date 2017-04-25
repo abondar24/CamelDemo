@@ -13,6 +13,7 @@ public class FtpToJMS {
     public static void main(String[] args) throws Exception {
         CamelContext camelContext = new DefaultCamelContext();
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://172.17.0.3:61616");
+
         camelContext.addComponent("jms", JmsComponent.jmsComponentAutoAcknowledge(connectionFactory));
 
 
