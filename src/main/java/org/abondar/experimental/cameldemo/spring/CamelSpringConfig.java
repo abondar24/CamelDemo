@@ -1,7 +1,6 @@
 package org.abondar.experimental.cameldemo.spring;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
-import org.apache.camel.CamelContext;
 import org.apache.camel.component.jms.JmsComponent;
 import org.apache.camel.spring.javaconfig.CamelConfiguration;
 import org.springframework.context.annotation.Bean;
