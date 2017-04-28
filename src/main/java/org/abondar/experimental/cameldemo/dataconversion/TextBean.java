@@ -1,4 +1,4 @@
-package org.abondar.experimental.cameldemo;
+package org.abondar.experimental.cameldemo.dataconversion;
 
 
 import org.apache.camel.dataformat.bindy.annotation.CsvRecord;

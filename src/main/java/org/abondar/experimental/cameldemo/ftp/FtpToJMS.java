@@ -1,4 +1,4 @@
-package org.abondar.experimental.cameldemo;
+package org.abondar.experimental.cameldemo.ftp;
 
 
 import org.apache.activemq.ActiveMQConnectionFactory;

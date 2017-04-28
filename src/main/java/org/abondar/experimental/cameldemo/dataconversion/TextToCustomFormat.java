@@ -1,12 +1,12 @@
-package org.abondar.experimental.cameldemo;
+package org.abondar.experimental.cameldemo.dataconversion;
 
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
 
+public class TextToCustomFormat {
 
-public class TextToXmlXstream {
     public static void main(String[] args) throws Exception {
 
         TextBean bean = new TextBean("1123442","555544",
@@ -14,20 +14,19 @@ public class TextToXmlXstream {
 
         CamelContext context = new DefaultCamelContext();
 
+
         context.addRoutes(new RouteBuilder() {
             @Override
             public void configure() throws Exception {
                 from("timer://tt1?fixedRate=true&period=300")
                         .setBody(constant(bean))
-                        .marshal()
-                        .xstream()
-                        .to("file:/home/abondar/Downloads?fileName=out.xml");
+                        .marshal(new CustomDataFormat())
+                        .to("file:/home/abondar/Downloads?fileName=out.txt");
             }
         });
 
         context.start();
         Thread.sleep(1000);
         context.stop();
-
     }
 }
