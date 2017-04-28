@@ -10,6 +10,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Arrays;
 
+
+//comment jaxb annotations for CSV usage
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @CsvRecord(separator = ",",crlf = "UNIX")

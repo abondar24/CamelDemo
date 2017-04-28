@@ -23,6 +23,6 @@ public class TextToCSVProcessor implements Processor {
             csv.append(",").append(item.trim());
         }
 
-        exchange.getIn().setBody(csv.toString());
+        exchange.getOut().setBody(csv.toString());
     }
 }
