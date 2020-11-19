@@ -2,6 +2,7 @@ package org.abondar.experimental.cameldemo.command;
 
 
 import org.abondar.experimental.cameldemo.greeter.GreetCommand;
+import org.abondar.experimental.cameldemo.mina.MinaServer;
 
 public class CommandSwitcher {
 
@@ -18,6 +19,11 @@ public class CommandSwitcher {
                 case GR:
                     GreetCommand greetCommand = new GreetCommand();
                     executor.executeCommand(greetCommand);
+                    break;
+
+                case MN:
+                    MinaServer mn = new MinaServer();
+                    executor.executeCommand(mn);
                     break;
 
             }
