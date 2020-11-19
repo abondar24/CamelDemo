@@ -1,4 +1,4 @@
-package org.abondar.experimental.cameldemo.spring;
+package org.abondar.experimental.cameldemo.greeter;
 
 
 public class DanishGreeter implements Greeter{
