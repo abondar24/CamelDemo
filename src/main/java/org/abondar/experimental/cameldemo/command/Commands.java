@@ -5,6 +5,7 @@ public enum  Commands {
     CFC,
     GR,
     FC,
+    FP,
     MN
 
 }
