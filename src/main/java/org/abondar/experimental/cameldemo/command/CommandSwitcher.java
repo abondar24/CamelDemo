@@ -5,6 +5,7 @@ import org.abondar.experimental.cameldemo.file.ContentBasedFileCopier;
 import org.abondar.experimental.cameldemo.file.FileCopier;
 import org.abondar.experimental.cameldemo.file.FilePrinter;
 import org.abondar.experimental.cameldemo.file.FileWriter;
+import org.abondar.experimental.cameldemo.ftp.FtpFileWriter;
 import org.abondar.experimental.cameldemo.greeter.GreetCommand;
 import org.abondar.experimental.cameldemo.mina.MinaServer;
 
@@ -39,6 +40,11 @@ public class CommandSwitcher {
                 case FP:
                     FilePrinter filePrinter = new FilePrinter();
                     executor.executeCommand(filePrinter);
+                    break;
+
+                case FTW:
+                    FtpFileWriter ftpFileWriter = new FtpFileWriter();
+                    executor.executeCommand(ftpFileWriter);
                     break;
 
                 case FW:

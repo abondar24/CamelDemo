@@ -8,6 +8,7 @@ Some Camel Demos
 5. File Copier(fc) - file copy from source to destination
 6. File Printer(fp) - prints contents of files in directory
 7. File Writer(fw) - write message from stream to file
+8. Ftp FileWriter(fw) - write message from stream to file located on ftp server
 
 Arg name for running is in ()
 

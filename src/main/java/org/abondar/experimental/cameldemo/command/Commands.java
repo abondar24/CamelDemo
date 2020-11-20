@@ -6,6 +6,7 @@ public enum  Commands {
     GR,
     FC,
     FP,
+    FTW,
     FW,
     MN
 
