@@ -7,6 +7,7 @@ public enum  Commands {
     FC,
     FP,
     FTJ,
+    FTE,
     FTW,
     FW,
     MN
