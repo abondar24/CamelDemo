@@ -1,6 +1,7 @@
 package org.abondar.experimental.cameldemo.command;
 
 
+import org.abondar.experimental.cameldemo.concurency.ConcurrentFileProcessor;
 import org.abondar.experimental.cameldemo.dataconversion.command.TextToXmlXstream;
 import org.abondar.experimental.cameldemo.dataconversion.command.TextToCSV;
 import org.abondar.experimental.cameldemo.dataconversion.command.TextToCsvBindy;
@@ -33,6 +34,11 @@ public class CommandSwitcher {
                 case CFC:
                     ContentBasedFileCopier cfc = new ContentBasedFileCopier();
                     executor.executeCommand(cfc);
+                    break;
+
+                case CFP:
+                    ConcurrentFileProcessor cfp = new ConcurrentFileProcessor();
+                    executor.executeCommand(cfp);
                     break;
 
                 case GR:

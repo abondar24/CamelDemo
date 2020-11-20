@@ -31,7 +31,9 @@ Some Camel Demos
 
 15. Text to XML JAXB (txj) - write text data to xml file using JAXB
 
-16. Text to XML Xstream (txx) write text data to xml file using Xstream
+16. Text to XML Xstream (txx) - write text data to xml file using Xstream
+
+17. Concurrent File Processor (cfp) - process files from source directory in parrallel
 Arg name for running is in ()
 
 
