@@ -3,6 +3,7 @@ package org.abondar.experimental.cameldemo.command;
 
 import org.abondar.experimental.cameldemo.concurency.ConcurrentComponentCommand;
 import org.abondar.experimental.cameldemo.concurency.ConcurrentFileProcessor;
+import org.abondar.experimental.cameldemo.concurency.FileReadThreadPool;
 import org.abondar.experimental.cameldemo.dataconversion.command.TextToXmlXstream;
 import org.abondar.experimental.cameldemo.dataconversion.command.TextToCSV;
 import org.abondar.experimental.cameldemo.dataconversion.command.TextToCsvBindy;
@@ -70,6 +71,11 @@ public class CommandSwitcher {
                 case FTJ:
                     FtpToJmsCopier ftpToJmsCopier = new FtpToJmsCopier();
                     executor.executeCommand(ftpToJmsCopier);
+                    break;
+
+                case FTH:
+                    FileReadThreadPool fileReadThreadPool = new FileReadThreadPool();
+                    executor.executeCommand(fileReadThreadPool);
                     break;
 
                 case FTW:

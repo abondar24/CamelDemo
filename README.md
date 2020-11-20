@@ -36,6 +36,8 @@ Some Camel Demos
 17. Concurrent File Processor (cfp) - process files from source directory in parrallel
 
 18. Concurrent Component (cc) - usage of concurrent component in camel.
+
+19. File Read ThreadPool (fth) - read files from source directory using thread pool 
 Arg name for running is in ()
 
 
