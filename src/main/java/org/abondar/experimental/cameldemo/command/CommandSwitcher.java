@@ -1,6 +1,7 @@
 package org.abondar.experimental.cameldemo.command;
 
 
+import org.abondar.experimental.cameldemo.dataconversion.command.TextToXmlXstream;
 import org.abondar.experimental.cameldemo.dataconversion.command.TextToCSV;
 import org.abondar.experimental.cameldemo.dataconversion.command.TextToCsvBindy;
 import org.abondar.experimental.cameldemo.dataconversion.command.TextToCustomFormat;
@@ -97,6 +98,11 @@ public class CommandSwitcher {
                 case TXJ:
                     TextToXmlJaxb textToXmlJaxb = new TextToXmlJaxb();
                     executor.executeCommand(textToXmlJaxb);
+                    break;
+
+                case TXX:
+                    TextToXmlXstream textToXmlXstream = new TextToXmlXstream();
+                    executor.executeCommand(textToXmlXstream);
                     break;
 
             }

@@ -16,6 +16,7 @@ public enum  Commands {
     TCF,
     TJ,
     TXJ,
+    TXX,
 
 
 }
