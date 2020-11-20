@@ -13,7 +13,8 @@ public enum  Commands {
     MN,
     TC,
     TCB,
-    TCF
+    TCF,
+    TJ
 
 
 }

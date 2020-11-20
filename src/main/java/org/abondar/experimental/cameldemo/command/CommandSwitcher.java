@@ -4,6 +4,7 @@ package org.abondar.experimental.cameldemo.command;
 import org.abondar.experimental.cameldemo.dataconversion.command.TextToCSV;
 import org.abondar.experimental.cameldemo.dataconversion.command.TextToCsvBindy;
 import org.abondar.experimental.cameldemo.dataconversion.command.TextToCustomFormat;
+import org.abondar.experimental.cameldemo.dataconversion.command.TextToJson;
 import org.abondar.experimental.cameldemo.file.ContentBasedFileCopier;
 import org.abondar.experimental.cameldemo.file.FileCopier;
 import org.abondar.experimental.cameldemo.file.FilePrinter;
@@ -85,6 +86,11 @@ public class CommandSwitcher {
                 case TCF:
                     TextToCustomFormat textToCustomFormat = new TextToCustomFormat();
                     executor.executeCommand(textToCustomFormat);
+                    break;
+
+                case TJ:
+                    TextToJson textToJson = new TextToJson();
+                    executor.executeCommand(textToJson);
                     break;
 
             }
