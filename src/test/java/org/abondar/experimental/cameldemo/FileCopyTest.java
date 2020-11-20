@@ -3,17 +3,19 @@ package org.abondar.experimental.cameldemo;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.RoutesBuilder;
+import org.apache.camel.builder.AdviceWithRouteBuilder;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
 import java.io.File;
 
-public class TestOne extends CamelTestSupport{
+public class FileCopyTest extends CamelTestSupport{
 
     public void setUp() throws Exception{
-        deleteDirectory("target/inbox");
-        deleteDirectory("target/outbox");
+        deleteDirectory("inbox");
+        deleteDirectory("outbox");
         super.setUp();
     }
 
@@ -32,15 +34,12 @@ public class TestOne extends CamelTestSupport{
 
 
     @Test
-    public void testMoveFile() throws Exception {
+    public void testFileCopy() throws Exception {
+        MockEndpoint resultEndpoint = resolveMandatoryEndpoint("mock:file://target/inbox", MockEndpoint.class);
         template.sendBodyAndHeader("file://target/inbox","Hi",
                 Exchange.FILE_NAME,"hello.txt");
 
-        Thread.sleep(1000);
+        resultEndpoint.assertIsSatisfied();
 
-        File target = new File("target/outbox/hello.txt");
-
-        String content = context.getTypeConverter().convertTo(String.class,target);
-        assertEquals("Hi", content);
     }
 }

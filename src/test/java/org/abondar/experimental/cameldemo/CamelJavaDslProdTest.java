@@ -3,6 +3,7 @@ package org.abondar.experimental.cameldemo;
 
 import org.apache.camel.*;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.component.properties.PropertiesComponent;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
@@ -12,7 +13,6 @@ import java.io.File;
 public class CamelJavaDslProdTest extends CamelTestSupport {
 
 
-    private String inboxDir;
     private String outboxDir;
 
     @EndpointInject(uri = "file:{{file.inbox}}")
@@ -43,7 +43,7 @@ public class CamelJavaDslProdTest extends CamelTestSupport {
 
     public void setUp() throws Exception {
         super.setUp();
-        inboxDir = context.resolvePropertyPlaceholders("{{file.inbox}}");
+        String inboxDir = context.resolvePropertyPlaceholders("{{file.inbox}}");
         outboxDir = context.resolvePropertyPlaceholders("{{file.outbox}}");
 
         deleteDirectory(inboxDir);
@@ -53,16 +53,15 @@ public class CamelJavaDslProdTest extends CamelTestSupport {
 
     @Test
     public void testMoveFile() throws Exception {
+        MockEndpoint resultEndpoint = resolveMandatoryEndpoint("mock:file:"+inbox, MockEndpoint.class);
+
         context.setTracing(true);
+
 
         inbox.sendBodyAndHeader("Hello World", Exchange.FILE_NAME, "hello.txt");
 
-        Thread.sleep(1000);
+        resultEndpoint.assertIsSatisfied();
 
-        File target = new File(outboxDir + "/hello.txt");
-
-        String content = context.getTypeConverter().convertTo(String.class, target);
-        assertEquals("Hello World", content);
     }
 
 }
