@@ -2,6 +2,7 @@ package org.abondar.experimental.cameldemo.command;
 
 public enum  Commands {
 
+    CC,
     CFC,
     CFP,
     GR,

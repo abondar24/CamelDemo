@@ -34,6 +34,8 @@ Some Camel Demos
 16. Text to XML Xstream (txx) - write text data to xml file using Xstream
 
 17. Concurrent File Processor (cfp) - process files from source directory in parrallel
+
+18. Concurrent Component (cc) - usage of concurrent component in camel.
 Arg name for running is in ()
 
 
