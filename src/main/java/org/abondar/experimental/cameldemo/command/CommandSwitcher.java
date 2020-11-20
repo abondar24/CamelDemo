@@ -1,6 +1,7 @@
 package org.abondar.experimental.cameldemo.command;
 
 
+import org.abondar.experimental.cameldemo.dataconversion.command.TextToCSV;
 import org.abondar.experimental.cameldemo.file.ContentBasedFileCopier;
 import org.abondar.experimental.cameldemo.file.FileCopier;
 import org.abondar.experimental.cameldemo.file.FilePrinter;
@@ -68,6 +69,10 @@ public class CommandSwitcher {
                     MinaServer mn = new MinaServer();
                     executor.executeCommand(mn);
                     break;
+
+                case TC:
+                    TextToCSV textToCSV = new TextToCSV();
+                    executor.executeCommand(textToCSV);
 
             }
         } catch (IllegalArgumentException ex){

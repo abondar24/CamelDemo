@@ -10,6 +10,8 @@ public enum  Commands {
     FTE,
     FTW,
     FW,
-    MN
+    MN,
+    TC,
+
 
 }

@@ -21,6 +21,8 @@ Some Camel Demos
 
 10. FTP to JMS with error handler (fte) - write files from ftp to jms queue with additional error handling
 
+11. Text to CSV (tc)- write text data tp csv file
+
 Arg name for running is in ()
 
 
