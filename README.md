@@ -29,6 +29,8 @@ Some Camel Demos
 
 14. Text to Json (tj) - write text data to json file
 
+15. Text to XML JAXB (txj) - write text data to xml file using JAXB
+
 Arg name for running is in ()
 
 
