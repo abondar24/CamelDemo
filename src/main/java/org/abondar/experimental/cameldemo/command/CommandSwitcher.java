@@ -2,6 +2,7 @@ package org.abondar.experimental.cameldemo.command;
 
 
 import org.abondar.experimental.cameldemo.file.ContentBasedFileCopier;
+import org.abondar.experimental.cameldemo.file.FileCopier;
 import org.abondar.experimental.cameldemo.greeter.GreetCommand;
 import org.abondar.experimental.cameldemo.mina.MinaServer;
 
@@ -26,6 +27,11 @@ public class CommandSwitcher {
                 case GR:
                     GreetCommand greetCommand = new GreetCommand();
                     executor.executeCommand(greetCommand);
+                    break;
+
+                case FC:
+                    FileCopier fileCopier = new FileCopier();
+                    executor.executeCommand(fileCopier);
                     break;
 
                 case MN:
