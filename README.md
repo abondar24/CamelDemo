@@ -25,6 +25,7 @@ Some Camel Demos
 
 12. Text to CSV bindy (tcb) - write text data to csv file using bindy
 
+13. Text to Custom Format (tcf) - write text data to custom file format
 Arg name for running is in ()
 
 

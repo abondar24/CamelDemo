@@ -12,7 +12,8 @@ public enum  Commands {
     FW,
     MN,
     TC,
-    TCB
+    TCB,
+    TCF
 
 
 }
