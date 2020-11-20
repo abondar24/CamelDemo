@@ -1,9 +1,10 @@
 # CamelDemo
 Some Camel Demos
 
-1. Greet - spring based camel greeter (gr)
-2. Mina - dummy server (mn)
+1. Greet(gr) - spring based camel greeter.
+2. Mina(mn) - dummy server.
 3. CXF - cxf and camel usage. (Run unit test to try)
+4. Content Based File Copier(cfc) - file copy from source to destinstion based on file content
 
 Arg name for running is in ()
 

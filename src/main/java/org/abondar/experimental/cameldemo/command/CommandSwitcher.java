@@ -1,6 +1,7 @@
 package org.abondar.experimental.cameldemo.command;
 
 
+import org.abondar.experimental.cameldemo.file.ContentBasedFileCopier;
 import org.abondar.experimental.cameldemo.greeter.GreetCommand;
 import org.abondar.experimental.cameldemo.mina.MinaServer;
 
@@ -16,6 +17,12 @@ public class CommandSwitcher {
     public void executeCommand(String cmd){
         try {
             switch (Commands.valueOf(cmd)){
+
+                case CFC:
+                    ContentBasedFileCopier cfc = new ContentBasedFileCopier();
+                    executor.executeCommand(cfc);
+                    break;
+
                 case GR:
                     GreetCommand greetCommand = new GreetCommand();
                     executor.executeCommand(greetCommand);
