@@ -38,12 +38,13 @@ Some Camel Demos
 18. Concurrent Component (cc) - usage of concurrent component in camel.
 
 19. File Read ThreadPool (fth) - read files from source directory using thread pool 
-Arg name for running is in ()
+
+Note: Arg name for running is in ()
 
 
 ## Build and run
 ```yaml
-mvn clean install 
+./mvnw clean install 
 
 java -jar <jar-location>/camelDemo <demo-name>
 ```
