@@ -23,7 +23,7 @@ public class CamelJavaDslProdTest extends CamelTestSupport {
 
         CamelContext context = super.createCamelContext();
 
-        PropertiesComponent prop = context.getComponent("properties", PropertiesComponent.class);
+        PropertiesComponent prop = (PropertiesComponent) context.getComponent("properties");
         prop.setLocation("classpath:prod.properties");
 
         return context;

@@ -6,6 +6,7 @@ import org.apache.activemq.util.ServiceSupport;
 import org.apache.camel.Exchange;
 import org.apache.camel.spi.DataFormat;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -38,6 +39,16 @@ public class CustomDataFormat extends ServiceSupport implements DataFormat {
 
     }
 
+    @Override
+    public void start(){
+
+    }
+
+    @Override
+    public void stop(){
+
+    }
+
     private static String reverseBytes(byte[] data) {
         StringBuilder sb = new StringBuilder(data.length);
         for  (int i = data.length - 1; i>=0; i--){
@@ -47,4 +58,18 @@ public class CustomDataFormat extends ServiceSupport implements DataFormat {
         return sb.toString();
     }
 
+    @Override
+    public void build() {
+        DataFormat.super.build();
+    }
+
+    @Override
+    public void init() {
+        DataFormat.super.init();
+    }
+
+    @Override
+    public void close() throws IOException {
+        DataFormat.super.close();
+    }
 }
