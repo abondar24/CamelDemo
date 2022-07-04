@@ -2,13 +2,16 @@ package org.abondar.experimental.cameldemo;
 
 
 import org.abondar.experimental.cameldemo.cxf.CxfConfig;
-import org.apache.camel.test.spring.CamelSpringTestSupport;
-import org.junit.Test;
+
+import org.apache.camel.test.spring.junit5.CamelSpringTestSupport;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CxfTest extends CamelSpringTestSupport {
     @Override

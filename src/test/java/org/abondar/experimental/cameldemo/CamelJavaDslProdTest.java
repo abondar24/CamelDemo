@@ -4,18 +4,19 @@ package org.abondar.experimental.cameldemo;
 import org.apache.camel.*;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
-import org.apache.camel.component.properties.PropertiesComponent;
-import org.apache.camel.test.junit4.CamelTestSupport;
-import org.junit.Test;
 
-import java.io.File;
+import org.apache.camel.spi.PropertiesComponent;
+import org.apache.camel.test.junit5.CamelTestSupport;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 
 public class CamelJavaDslProdTest extends CamelTestSupport {
 
 
     private String outboxDir;
 
-    @EndpointInject(uri = "file:{{file.inbox}}")
+    @EndpointInject(value = "file:{{file.inbox}}")
     private ProducerTemplate inbox;
 
     @Override
@@ -23,7 +24,7 @@ public class CamelJavaDslProdTest extends CamelTestSupport {
 
         CamelContext context = super.createCamelContext();
 
-        PropertiesComponent prop = (PropertiesComponent) context.getComponent("properties");
+        PropertiesComponent prop = context.getPropertiesComponent();
         prop.setLocation("classpath:prod.properties");
 
         return context;
@@ -41,25 +42,19 @@ public class CamelJavaDslProdTest extends CamelTestSupport {
     }
 
 
+    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
-        String inboxDir = context.resolvePropertyPlaceholders("{{file.inbox}}");
-        outboxDir = context.resolvePropertyPlaceholders("{{file.outbox}}");
 
-        deleteDirectory(inboxDir);
-        deleteDirectory(outboxDir);
     }
 
 
     @Test
     public void testMoveFile() throws Exception {
-        MockEndpoint resultEndpoint = resolveMandatoryEndpoint("mock:file:"+inbox, MockEndpoint.class);
+        MockEndpoint resultEndpoint = getMockEndpoint("mock:file:"+inbox);
 
         context.setTracing(true);
-
-
         inbox.sendBodyAndHeader("Hello World", Exchange.FILE_NAME, "hello.txt");
-
         resultEndpoint.assertIsSatisfied();
 
     }

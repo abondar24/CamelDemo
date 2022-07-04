@@ -3,8 +3,10 @@ package org.abondar.experimental.cameldemo;
 import org.apache.camel.Exchange;
 import org.apache.camel.spi.Synchronization;
 import org.apache.camel.support.SynchronizationAdapter;
-import org.apache.camel.test.junit4.CamelTestSupport;
-import org.junit.Test;
+import org.apache.camel.test.junit5.CamelTestSupport;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +15,8 @@ import java.util.concurrent.TimeUnit;
 
 
 public class CallbackTest extends CamelTestSupport {
+
+    private static final Logger log = LoggerFactory.getLogger(CallbackTest.class);
 
     @Test
     public void testCallback() throws Exception{

@@ -3,19 +3,20 @@ package org.abondar.experimental.cameldemo;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.RoutesBuilder;
-import org.apache.camel.builder.AdviceWithRouteBuilder;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
-import org.apache.camel.test.junit4.CamelTestSupport;
-import org.junit.Test;
+import org.apache.camel.test.junit5.CamelTestSupport;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import java.io.File;
 
-public class FileCopyTest extends CamelTestSupport{
+import static org.apache.camel.test.junit5.TestSupport.deleteDirectory;
 
+public class FileCopyTest extends CamelTestSupport {
+
+    @Override
+    @BeforeEach
     public void setUp() throws Exception{
-        deleteDirectory("inbox");
-        deleteDirectory("outbox");
         super.setUp();
     }
 
@@ -30,7 +31,6 @@ public class FileCopyTest extends CamelTestSupport{
             }
         };
     }
-
 
 
     @Test

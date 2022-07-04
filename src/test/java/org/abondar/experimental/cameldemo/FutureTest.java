@@ -2,14 +2,17 @@ package org.abondar.experimental.cameldemo;
 
 import org.apache.camel.RoutesBuilder;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.test.junit4.CamelTestSupport;
-import org.junit.Test;
+import org.apache.camel.test.junit5.CamelTestSupport;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.Future;
 
 
 public class FutureTest extends CamelTestSupport {
 
+    private static final Logger log = LoggerFactory.getLogger(FutureTest.class);
 
     @Test
     public void testFuture() throws Exception{
