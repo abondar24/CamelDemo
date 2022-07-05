@@ -1,4 +1,4 @@
-package org.abondar.experimental.cameldemo.cxf;
+package org.abondar.experimental.cameldemo.spring.cxf;
 
 
 import org.apache.camel.CamelConfiguration;

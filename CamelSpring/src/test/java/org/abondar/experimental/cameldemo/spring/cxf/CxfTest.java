@@ -1,15 +1,9 @@
-package org.abondar.experimental.cameldemo;
+package org.abondar.experimental.cameldemo.spring.cxf;
 
 
-import org.abondar.experimental.cameldemo.cxf.CxfConfig;
-
+import org.apache.camel.test.spring.junit5.CamelSpringTest;
 import org.apache.camel.test.spring.junit5.CamelSpringTestSupport;
-import org.apache.cxf.endpoint.Server;
-import org.apache.cxf.jaxrs.JAXRSBindingFactory;
-import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
+import org.apache.camel.test.spring.junit5.DisableJmx;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
@@ -19,17 +13,20 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@DisableJmx
+@CamelSpringTest
 public class CxfTest extends CamelSpringTestSupport {
     @Override
     protected AbstractApplicationContext createApplicationContext() {
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-        ctx.register(CxfConfig.class);
+        ctx.register(SpringTestConfig.class);
         ctx.refresh();
         return ctx;
     }
 
     @Test
-    @Disabled
+    //TODO: fix test
+    //TODO: add command to start cxf demo
     public void testOk() throws Exception{
         List<Object> params = new ArrayList<>();
         params.add("Alex");

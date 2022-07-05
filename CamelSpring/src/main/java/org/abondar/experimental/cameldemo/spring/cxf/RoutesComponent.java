@@ -1,10 +1,12 @@
-package org.abondar.experimental.cameldemo.cxf;
+package org.abondar.experimental.cameldemo.spring.cxf;
 
+import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.spring.SpringCamelContext;
 import org.apache.camel.spring.SpringRouteBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RoutesComponent extends SpringRouteBuilder {
+public class RoutesComponent extends RouteBuilder {
 
 
     @Override

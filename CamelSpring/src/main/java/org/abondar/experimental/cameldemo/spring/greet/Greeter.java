@@ -1,4 +1,4 @@
-package org.abondar.experimental.cameldemo.greeter;
+package org.abondar.experimental.cameldemo.spring.greet;
 
 
 public interface Greeter {
