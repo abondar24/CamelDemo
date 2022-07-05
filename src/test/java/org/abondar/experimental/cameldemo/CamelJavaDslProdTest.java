@@ -13,9 +13,6 @@ import org.junit.jupiter.api.Test;
 
 public class CamelJavaDslProdTest extends CamelTestSupport {
 
-
-    private String outboxDir;
-
     @EndpointInject(value = "file:{{file.inbox}}")
     private ProducerTemplate inbox;
 

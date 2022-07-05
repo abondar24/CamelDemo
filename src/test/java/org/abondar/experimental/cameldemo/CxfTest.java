@@ -4,6 +4,12 @@ package org.abondar.experimental.cameldemo;
 import org.abondar.experimental.cameldemo.cxf.CxfConfig;
 
 import org.apache.camel.test.spring.junit5.CamelSpringTestSupport;
+import org.apache.cxf.endpoint.Server;
+import org.apache.cxf.jaxrs.JAXRSBindingFactory;
+import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
@@ -23,6 +29,7 @@ public class CxfTest extends CamelSpringTestSupport {
     }
 
     @Test
+    @Disabled
     public void testOk() throws Exception{
         List<Object> params = new ArrayList<>();
         params.add("Alex");
