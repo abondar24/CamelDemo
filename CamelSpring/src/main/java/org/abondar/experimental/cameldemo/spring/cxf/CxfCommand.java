@@ -11,5 +11,9 @@ public class CxfCommand implements Command {
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
         ctx.register(CxfConfig.class);
         ctx.refresh();
+
+        while (true){
+
+        }
     }
 }

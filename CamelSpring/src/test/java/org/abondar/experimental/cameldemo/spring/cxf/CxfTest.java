@@ -26,8 +26,12 @@ public class CxfTest extends CamelSpringTestSupport {
 
     @Test
     //TODO: fix test
-    //TODO: add command to start cxf demo
+    //TODO: make localhost:9090/demo available
+    //TODO: make other modules
     public void testOk() throws Exception{
+        CxfCommand cmd = new CxfCommand();
+        cmd.execute();
+
         List<Object> params = new ArrayList<>();
         params.add("Alex");
         params.add(1);

@@ -12,7 +12,7 @@ public class SpringTestConfig implements CamelConfiguration {
 
     public CxfEndpoint demoEndpoint(){
         CxfEndpoint endpoint = new CxfEndpoint();
-        endpoint.setAddress("local://cxf_test");
+        endpoint.setAddress("mock://cxf_test");
         endpoint.setServiceClass(DemoEndpoint.class);
         return endpoint;
     }
