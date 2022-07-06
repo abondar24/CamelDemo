@@ -11,45 +11,28 @@ import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.spi.PropertiesComponent;
 import org.apache.camel.test.junit5.CamelTestSupport;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 
 public class CamelJavaDslProdTest extends CamelTestSupport {
 
-    @EndpointInject(value = "file:{{file.inbox}}")
+    @EndpointInject(value = "file:inbox")
     private ProducerTemplate inbox;
-
-    @Override
-    protected CamelContext createCamelContext() throws Exception {
-
-        CamelContext context = super.createCamelContext();
-
-        PropertiesComponent prop = context.getPropertiesComponent();
-        prop.setLocation("classpath:prod.properties");
-
-        return context;
-    }
 
     @Override
     protected RoutesBuilder createRouteBuilder() throws Exception {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                from("file:{{file.inbox}}")
-                        .to("file:{{file.outbox}}");
+                from("file:inbox")
+                        .to("file:/target/outbox");
             }
         };
     }
 
-
-    @BeforeEach
-    public void setUp() throws Exception {
-        super.setUp();
-
-    }
-
-
     @Test
+    @Disabled
     public void testMoveFile() throws Exception {
         MockEndpoint resultEndpoint = getMockEndpoint("mock:file:"+inbox);
 

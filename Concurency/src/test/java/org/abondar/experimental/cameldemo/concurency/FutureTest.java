@@ -11,7 +11,6 @@ import java.util.concurrent.Future;
 
 
 public class FutureTest extends CamelTestSupport {
-
     private static final Logger log = LoggerFactory.getLogger(FutureTest.class);
 
     @Test

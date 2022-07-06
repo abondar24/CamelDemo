@@ -9,6 +9,7 @@ import org.apache.camel.component.jms.JmsComponent;
 import org.apache.camel.impl.DefaultCamelContext;
 
 import javax.jms.ConnectionFactory;
+import java.util.Set;
 
 public class FtpToJmsCopier implements Command {
 
@@ -22,6 +23,11 @@ public class FtpToJmsCopier implements Command {
 
 
             camelContext.addRoutes(new RouteBuilder() {
+                @Override
+                public Set<String> updateRoutesToCamelContext(CamelContext context) throws Exception {
+                    return null;
+                }
+
                 @Override
                 public void configure() throws Exception {
                     from("ftp://localhost?username=admin&password=admin")

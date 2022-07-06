@@ -14,7 +14,9 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 
+
 public class CallbackTest extends CamelTestSupport {
+
 
     private static final Logger log = LoggerFactory.getLogger(CallbackTest.class);
 
