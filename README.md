@@ -5,7 +5,6 @@ Some Camel Demos
 
 2. Mina (mn) - dummy server.
 
-3. CXF - cxf and camel usage. (Run unit test to try)
 
 4. Content Based File Copier (cfc) - file copy from source to destination based on file content
 
