@@ -1,4 +1,4 @@
-package org.abondar.experimental.cameldemo;
+package org.abondar.experimental.camel.demo.ftp;
 
 
 import org.apache.camel.CamelContext;
@@ -8,6 +8,8 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit5.CamelTestSupport;
 import org.junit.jupiter.api.Test;
+
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -25,6 +27,11 @@ public class MockTestOne extends CamelTestSupport {
     @Override
     protected RoutesBuilder createRouteBuilder() throws Exception {
         return new RouteBuilder() {
+            @Override
+            public Set<String> updateRoutesToCamelContext(CamelContext context) throws Exception {
+                return null;
+            }
+
             @Override
             public void configure() throws Exception {
                 from("jms:topic:quote").to("mock:quote");

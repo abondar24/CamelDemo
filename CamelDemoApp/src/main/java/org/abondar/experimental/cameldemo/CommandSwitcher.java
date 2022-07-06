@@ -12,18 +12,14 @@ import org.abondar.experimental.cameldemo.dataconversion.command.TextToCustomFor
 import org.abondar.experimental.cameldemo.dataconversion.command.TextToJson;
 import org.abondar.experimental.cameldemo.dataconversion.command.TextToXmlJaxb;
 import org.abondar.experimental.cameldemo.dataconversion.command.TextToXmlXstream;
-//import org.abondar.experimental.cameldemo.file.ContentBasedFileCopier;
-//import org.abondar.experimental.cameldemo.file.FileCopier;
-//import org.abondar.experimental.cameldemo.file.FilePrinter;
-//import org.abondar.experimental.cameldemo.file.FileWriter;
-//import org.abondar.experimental.cameldemo.ftp.FtpFileWriter;
-//import org.abondar.experimental.cameldemo.ftp.FtpToJmsCopier;
-//import org.abondar.experimental.cameldemo.ftp.FtpToJmsWithErrorHandler;
-//import org.abondar.experimental.cameldemo.greeter.GreetCommand;
 //import org.abondar.experimental.cameldemo.mina.MinaServer;
 import org.abondar.experimental.cameldemo.file.ContentBasedFileCopier;
+import org.abondar.experimental.cameldemo.file.FileCopier;
+import org.abondar.experimental.cameldemo.file.FilePrinter;
 import org.abondar.experimental.cameldemo.file.FileWriter;
 import org.abondar.experimental.cameldemo.ftp.FtpFileWriter;
+import org.abondar.experimental.cameldemo.ftp.FtpToJmsCopier;
+import org.abondar.experimental.cameldemo.ftp.FtpToJmsWithErrorHandler;
 import org.abondar.experimental.cameldemo.mina.MinaServer;
 import org.abondar.experimental.cameldemo.spring.greet.GreetCommand;
 
@@ -61,26 +57,26 @@ public class CommandSwitcher {
                     executor.executeCommand(greetCommand);
                     break;
 
-//                case FC:
-//                    FileCopier fileCopier = new FileCopier();
-//                    executor.executeCommand(fileCopier);
-//                    break;
-//
-//                case FP:
-//                    FilePrinter filePrinter = new FilePrinter();
-//                    executor.executeCommand(filePrinter);
-//                    break;
-//
-//                case FTE:
-//                    FtpToJmsWithErrorHandler ftj = new FtpToJmsWithErrorHandler();
-//                    executor.executeCommand(ftj);
-//                    break;
-//
-//                case FTJ:
-//                    FtpToJmsCopier ftpToJmsCopier = new FtpToJmsCopier();
-//                    executor.executeCommand(ftpToJmsCopier);
-//                    break;
-//
+                case FC:
+                    FileCopier fileCopier = new FileCopier();
+                    executor.executeCommand(fileCopier);
+                    break;
+
+                case FP:
+                    FilePrinter filePrinter = new FilePrinter();
+                    executor.executeCommand(filePrinter);
+                    break;
+
+                case FTE:
+                    FtpToJmsWithErrorHandler ftj = new FtpToJmsWithErrorHandler();
+                    executor.executeCommand(ftj);
+                    break;
+
+                case FTJ:
+                    FtpToJmsCopier ftpToJmsCopier = new FtpToJmsCopier();
+                    executor.executeCommand(ftpToJmsCopier);
+                    break;
+
                 case FTH:
                     FileReadThreadPoolCommand fileReadThreadPool = new FileReadThreadPoolCommand();
                     executor.executeCommand(fileReadThreadPool);
