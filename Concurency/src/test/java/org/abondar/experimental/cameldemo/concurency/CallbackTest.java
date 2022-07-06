@@ -1,4 +1,4 @@
-package org.abondar.experimental.cameldemo;
+package org.abondar.experimental.cameldemo.concurency;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.spi.Synchronization;

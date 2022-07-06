@@ -1,4 +1,4 @@
-package org.abondar.experimental.cameldemo;
+package org.abondar.experimental.cameldemo.file;
 
 
 import org.apache.camel.Exchange;

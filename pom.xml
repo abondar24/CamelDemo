@@ -13,6 +13,8 @@
         <module>Command</module>
         <module>CamelDemoApp</module>
         <module>Concurency</module>
+        <module>DataConversion</module>
+        <module>File</module>
     </modules>
 
     <properties>
@@ -36,32 +38,6 @@
             <version>${camel.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-xstream</artifactId>
-            <version>${camel.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-jaxb</artifactId>
-            <version>${camel.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-bindy</artifactId>
-            <version>${camel.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-jackson</artifactId>
-            <version>${camel.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-stream</artifactId>
-            <version>${camel.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>org.apache.camel</groupId>
