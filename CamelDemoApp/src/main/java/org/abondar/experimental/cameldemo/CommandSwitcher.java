@@ -3,9 +3,9 @@ package org.abondar.experimental.cameldemo;
 
 import org.abondar.experimental.cameldemo.command.CommandExecutor;
 import org.abondar.experimental.cameldemo.command.Commands;
-//import org.abondar.experimental.cameldemo.concurency.ConcurrentComponentCommand;
-//import org.abondar.experimental.cameldemo.concurency.ConcurrentFileProcessor;
-//import org.abondar.experimental.cameldemo.concurency.FileReadThreadPool;
+import org.abondar.experimental.cameldemo.concurency.ConcurrentComponentCommand;
+import org.abondar.experimental.cameldemo.concurency.ConcurrentFileProcessor;
+import org.abondar.experimental.cameldemo.concurency.FileReadThreadPoolCommand;
 //import org.abondar.experimental.cameldemo.dataconversion.command.TextToCSV;
 //import org.abondar.experimental.cameldemo.dataconversion.command.TextToCsvBindy;
 //import org.abondar.experimental.cameldemo.dataconversion.command.TextToCustomFormat;
@@ -21,10 +21,7 @@ import org.abondar.experimental.cameldemo.command.Commands;
 //import org.abondar.experimental.cameldemo.ftp.FtpToJmsWithErrorHandler;
 //import org.abondar.experimental.cameldemo.greeter.GreetCommand;
 //import org.abondar.experimental.cameldemo.mina.MinaServer;
-import org.abondar.experimental.cameldemo.spring.cxf.CxfCommand;
 import org.abondar.experimental.cameldemo.spring.greet.GreetCommand;
-
-import java.io.FileWriter;
 
 public class CommandSwitcher {
 
@@ -39,25 +36,21 @@ public class CommandSwitcher {
         try {
             switch (Commands.valueOf(cmd)){
 
-//                case CC:
-//                    ConcurrentComponentCommand concurrentComponentDemo = new ConcurrentComponentCommand();
-//                    executor.executeCommand(concurrentComponentDemo);
-//                    break;
-//
+                case CC:
+                    ConcurrentComponentCommand concurrentComponentDemo = new ConcurrentComponentCommand();
+                    executor.executeCommand(concurrentComponentDemo);
+                    break;
+
 //                case CFC:
 //                    ContentBasedFileCopier cfc = new ContentBasedFileCopier();
 //                    executor.executeCommand(cfc);
 //                    break;
 //
-//                case CFP:
-//                    ConcurrentFileProcessor cfp = new ConcurrentFileProcessor();
-//                    executor.executeCommand(cfp);
-//                    break;
-
-                case CXF:
-                    CxfCommand cxf = new CxfCommand();
-                    executor.executeCommand(cxf);
+                case CFP:
+                    ConcurrentFileProcessor cfp = new ConcurrentFileProcessor();
+                    executor.executeCommand(cfp);
                     break;
+
 
                 case GR:
                     GreetCommand greetCommand = new GreetCommand();
@@ -84,11 +77,11 @@ public class CommandSwitcher {
 //                    executor.executeCommand(ftpToJmsCopier);
 //                    break;
 //
-//                case FTH:
-//                    FileReadThreadPool fileReadThreadPool = new FileReadThreadPool();
-//                    executor.executeCommand(fileReadThreadPool);
-//                    break;
-//
+                case FTH:
+                    FileReadThreadPoolCommand fileReadThreadPool = new FileReadThreadPoolCommand();
+                    executor.executeCommand(fileReadThreadPool);
+                    break;
+
 //                case FTW:
 //                    FtpFileWriter ftpFileWriter = new FtpFileWriter();
 //                    executor.executeCommand(ftpFileWriter);

@@ -10,7 +10,7 @@ import org.apache.camel.impl.DefaultCamelContext;
 
 import java.util.concurrent.ExecutorService;
 
-public class FileReadThreadPool  implements Command {
+public class FileReadThreadPoolCommand implements Command {
 
 
 

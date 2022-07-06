@@ -12,6 +12,7 @@
         <module>CamelSpring</module>
         <module>Command</module>
         <module>CamelDemoApp</module>
+        <module>Concurency</module>
     </modules>
 
     <properties>
@@ -67,11 +68,7 @@
             <artifactId>camel-mina</artifactId>
             <version>${camel.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-spring-javaconfig</artifactId>
-            <version>3.14.4</version>
-        </dependency>
+
         <dependency>
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-all</artifactId>

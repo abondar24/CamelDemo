@@ -20,6 +20,12 @@
         </dependency>
         <dependency>
             <groupId>org.abondar.experimental</groupId>
+            <artifactId>Concurency</artifactId>
+            <version>1.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.abondar.experimental</groupId>
             <artifactId>Command</artifactId>
             <version>1.1-SNAPSHOT</version>
             <scope>compile</scope>
