@@ -1,8 +1,10 @@
 package org.abondar.experimental.cameldemo.concurency;
 
+import org.apache.camel.ProducerTemplate;
 import org.apache.camel.RoutesBuilder;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.test.junit5.CamelTestSupport;
+
+import org.apache.camel.impl.DefaultCamelContext;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,41 +12,52 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.Future;
 
 
-public class FutureTest extends CamelTestSupport {
-    private static final Logger log = LoggerFactory.getLogger(FutureTest.class);
+public class FutureTest {
+    private static final Logger LOGGER = LoggerFactory.getLogger(FutureTest.class);
 
     @Test
-    public void testFuture() throws Exception{
-        log.info("Submitting");
-        Future<String> future = template.asyncRequestBody("seda:quote","Hello",String.class);
-        log.info("Task submitted");
+    public void testFuture() throws Exception {
+        DefaultCamelContext camelctx = new DefaultCamelContext();
+        camelctx.addRoutes(createRouteBuilder());
+        ProducerTemplate template=camelctx.createProducerTemplate();
+
+        LOGGER.info("Submitting");
+        camelctx.start();
+
+        Future<String> future = template.asyncRequestBody("seda:quote", "Hello", String.class);
+        LOGGER.info("Task submitted");
 
 
         String answer = future.get();
-        log.info("Answer: "+answer);
+        LOGGER.info("Answer: " + answer);
+       camelctx.stop();
     }
 
     @Test
-    public void testFutureDone() throws Exception{
-        log.info("Submitting");
-        Future<String> future = template.asyncRequestBody("seda:quote","Hello",String.class);
-        log.info("Task submitted");
+    public void testFutureDone() throws Exception {
+        DefaultCamelContext camelctx = new DefaultCamelContext();
+        camelctx.addRoutes(createRouteBuilder());
+        ProducerTemplate template=camelctx.createProducerTemplate();
+        camelctx.start();
+
+        LOGGER.info("Submitting");
+        Future<String> future = template.asyncRequestBody("seda:quote", "Hello", String.class);
+        LOGGER.info("Task submitted");
 
         boolean done = false;
-        while (!done){
+        while (!done) {
             done = future.isDone();
-            log.info("Done? "+done);
-            if (!done){
-                Thread.sleep(2000);
+            LOGGER.info("Done? " + done);
+            if (!done) {
+                Thread.sleep(5000);
             }
         }
-
+        camelctx.stop();
         String answer = future.get();
-        log.info("Answer: "+answer);
+        LOGGER.info("Answer: " + answer);
     }
 
 
-    @Override
     protected RoutesBuilder createRouteBuilder() throws Exception {
         return new RouteBuilder() {
             @Override

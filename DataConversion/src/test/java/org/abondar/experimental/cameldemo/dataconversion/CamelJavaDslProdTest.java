@@ -1,17 +1,16 @@
 package org.abondar.experimental.cameldemo.dataconversion;
 
 
-import org.apache.camel.CamelContext;
 import org.apache.camel.EndpointInject;
 import org.apache.camel.Exchange;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.RoutesBuilder;
 import org.apache.camel.builder.RouteBuilder;
+
 import org.apache.camel.component.mock.MockEndpoint;
-import org.apache.camel.spi.PropertiesComponent;
 import org.apache.camel.test.junit5.CamelTestSupport;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
+
+
 import org.junit.jupiter.api.Test;
 
 
@@ -32,9 +31,8 @@ public class CamelJavaDslProdTest extends CamelTestSupport {
     }
 
     @Test
-    @Disabled
     public void testMoveFile() throws Exception {
-        MockEndpoint resultEndpoint = getMockEndpoint("mock:file:"+inbox);
+        MockEndpoint resultEndpoint = getMockEndpoint("mock:file:" + inbox);
 
         context.setTracing(true);
         inbox.sendBodyAndHeader("Hello World", Exchange.FILE_NAME, "hello.txt");

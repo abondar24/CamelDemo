@@ -59,18 +59,5 @@ public class ConcurentComponent extends DefaultComponent implements Runnable {
          super.shutdown();
     }
 
-    @Override
-    public EndpointConfiguration createConfiguration(String s) throws Exception {
-        return null;
-    }
 
-    @Override
-    public ComponentConfiguration createComponentConfiguration() {
-        return null;
-    }
-
-    @Override
-    public String getVersion() {
-        return null;
-    }
 }
