@@ -1,9 +1,10 @@
 package org.abondar.experimental.cameldemo.concurency;
 
 import org.apache.camel.Exchange;
+
+import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.spi.Synchronization;
 import org.apache.camel.support.SynchronizationAdapter;
-import org.apache.camel.test.junit5.CamelTestSupport;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 
 
-public class CallbackTest extends CamelTestSupport {
+public class CallbackTest {
 
 
     private static final Logger log = LoggerFactory.getLogger(CallbackTest.class);
@@ -25,6 +26,8 @@ public class CallbackTest extends CamelTestSupport {
         final List<String> relates = new ArrayList<>();
         final CountDownLatch latch = new CountDownLatch(5);
 
+        DefaultCamelContext camelctx = new DefaultCamelContext();
+        var tmp=camelctx.createProducerTemplate();
         Synchronization callback = new SynchronizationAdapter(){
             @Override
             public void onComplete(Exchange exchange) {
@@ -40,7 +43,7 @@ public class CallbackTest extends CamelTestSupport {
 
         String body = "bumper";
         for (int i=0;i<5;i++){
-            template.asyncCallbackRequestBody("seda:partner:"+i,body,callback);
+            tmp.asyncCallbackRequestBody("seda:partner:"+i,body,callback);
         }
 
         log.info("Send "+5+ " messages to partners.");

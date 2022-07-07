@@ -1,8 +1,12 @@
 package org.abondar.experimental.cameldemo.concurency;
 
 
+import org.apache.camel.ComponentConfiguration;
 import org.apache.camel.Endpoint;
-import org.apache.camel.impl.DefaultComponent;
+
+
+import org.apache.camel.EndpointConfiguration;
+import org.apache.camel.support.DefaultComponent;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -27,7 +31,6 @@ public class ConcurentComponent extends DefaultComponent implements Runnable {
 
     @Override
     public void start() {
-        //super.start();
         service = getCamelContext().getExecutorServiceManager()
                 .newScheduledThreadPool(this, "Back task", 1);
         service.scheduleWithFixedDelay(this, 1, 1, TimeUnit.SECONDS);
@@ -53,6 +56,21 @@ public class ConcurentComponent extends DefaultComponent implements Runnable {
 
     @Override
     public void shutdown() {
-        // super.shutdown();
+         super.shutdown();
+    }
+
+    @Override
+    public EndpointConfiguration createConfiguration(String s) throws Exception {
+        return null;
+    }
+
+    @Override
+    public ComponentConfiguration createComponentConfiguration() {
+        return null;
+    }
+
+    @Override
+    public String getVersion() {
+        return null;
     }
 }

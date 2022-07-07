@@ -7,6 +7,7 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
 
+
 public class ConcurrentFileProcessor implements Command {
 
     @Override
@@ -15,6 +16,8 @@ public class ConcurrentFileProcessor implements Command {
             CamelContext context = new DefaultCamelContext();
 
             context.addRoutes(new RouteBuilder() {
+
+
                 @Override
                 public void configure() throws Exception {
                     from("file:/home/abondar/Documents?charset=UTF-8")
