@@ -44,3 +44,6 @@ java -jar build/libs/ShoppingCart-1.0-SNAPSHOT.jar
 ```
 docker run -d --name todo  -p 8080:8080 abondar/shoppingCart
 ```
+## Note
+
+- Change create log directory as mentioned in logback.xml file
