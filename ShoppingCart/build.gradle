@@ -19,9 +19,15 @@ dependencies {
 
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.apache.camel.springboot:camel-spring-boot-starter:$camelVersion")
+    implementation("org.apache.camel.springboot:camel-jackson-starter:$camelVersion")
+    implementation("org.apache.camel.springboot:camel-servlet-starter:$camelVersion")
+    implementation("org.apache.camel.springboot:camel-swagger-java-starter:$camelVersion")
+    implementation("org.apache.camel.springboot:camel-springdoc-starter:$camelVersion")
     implementation("ch.qos.logback:logback-core:1.2.11")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.apache.camel:camel-test-spring-junit5:$camelVersion")
 }
 
 test {

@@ -2,3 +2,16 @@ spring:
   banner:
     image:
       location: banner.txt
+
+camel:
+  springboot:
+    name: ShoppingCart
+  component:
+    servlet:
+      allow-java-serialized-object: true
+  servlet:
+    mapping:
+      context-path: "/cart/*"
+  dataformat:
+    jackson:
+      use-list: true
