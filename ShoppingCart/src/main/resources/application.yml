@@ -15,3 +15,10 @@ camel:
   dataformat:
     jackson:
       use-list: true
+
+
+firebase:
+  url: "https://shoppingcart-a62bb-default-rtdb.europe-west1.firebasedatabase.app/"
+  products: "products.json"
+  cartItems: "cartItems.json"
+

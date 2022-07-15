@@ -3,7 +3,7 @@ plugins {
     id "idea"
     id "org.springframework.boot" version "$springBootVersion"
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-
+    id "io.freefair.lombok" version "$lombokVersion"
 }
 
 group "org.abondar.experimental.cameldemo.shoppingcart"
@@ -24,6 +24,7 @@ dependencies {
     implementation("org.apache.camel.springboot:camel-servlet-starter:$camelVersion")
     implementation("org.apache.camel.springboot:camel-swagger-java-starter:$camelVersion")
     implementation("org.apache.camel.springboot:camel-springdoc-starter:$camelVersion")
+    implementation("org.apache.camel:camel-http:$camelVersion")
     implementation("ch.qos.logback:logback-core:1.2.11")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")

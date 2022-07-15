@@ -1,7 +1,8 @@
 package org.abondar.experimental.cameldemo.shoppingcart.route;
 
 import org.abondar.experimental.cameldemo.shoppingcart.model.CartProduct;
-import org.abondar.experimental.cameldemo.shoppingcart.model.CartProducts;
+import org.abondar.experimental.cameldemo.shoppingcart.model.CartProductPostResponse;
+import org.abondar.experimental.cameldemo.shoppingcart.model.CartProductRequest;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
@@ -16,12 +17,12 @@ public class ProductRestRoute extends RouteBuilder {
 
         .post()
         .apiDocs(true)
-            .type(CartProducts.class)
-            .outType(CartProducts.class)
+            .type(CartProductRequest.class)
+            .outType(CartProductPostResponse.class)
         .to("log:org.abondar.experimental.cameldemo.shoppingcart.route?level=INFO")
+            .to("direct:postToFirebase")
 
-        .get()
-            .path("/{id}")
+        .get("/{id}")
             .outType(CartProduct.class)
             .to("seda:out");
   }
