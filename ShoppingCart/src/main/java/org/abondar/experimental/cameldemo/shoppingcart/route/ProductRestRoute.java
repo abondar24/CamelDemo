@@ -4,6 +4,7 @@ import org.abondar.experimental.cameldemo.shoppingcart.model.CartProduct;
 import org.abondar.experimental.cameldemo.shoppingcart.model.CartProductPostResponse;
 import org.abondar.experimental.cameldemo.shoppingcart.model.CartProductRequest;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.model.rest.RestParamType;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -25,6 +26,16 @@ public class ProductRestRoute extends RouteBuilder {
         .get("/{id}")
             .outType(CartProduct.class)
             .to("log:org.abondar.experimental.cameldemo.shoppingcart.route?level=INFO")
-            .to("direct:getById");
+            .to("direct:getById")
+
+        .get()
+            .param()
+            .name("limit")
+            .type(RestParamType.query)
+            .endParam()
+            .outType(CartProduct.class)
+            .to("log:org.abondar.experimental.cameldemo.shoppingcart.route?level=INFO")
+            .to("direct:getByLimit");
+
   }
 }

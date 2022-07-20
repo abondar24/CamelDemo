@@ -15,12 +15,12 @@ import java.util.Map;
 import java.util.UUID;
 
 @Component
-public class ProductPostProcessor implements Processor {
+public class ProductProcessor implements Processor {
 
     private ObjectMapper mapper;
 
     @Autowired
-    public ProductPostProcessor(ObjectMapper mapper){
+    public ProductProcessor(ObjectMapper mapper){
         this.mapper = mapper;
     }
 
