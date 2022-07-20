@@ -1,18 +1,12 @@
 package org.abondar.experimental.cameldemo.shoppingcart.route;
 
-import org.abondar.experimental.cameldemo.shoppingcart.model.CartProduct;
-import org.abondar.experimental.cameldemo.shoppingcart.model.CartProductRequest;
 import org.abondar.experimental.cameldemo.shoppingcart.processor.ProductPostProcessor;
-import org.apache.camel.CamelContext;
+import org.abondar.experimental.cameldemo.shoppingcart.transform.ResponseBodyTransformer;
 import org.apache.camel.Exchange;
-import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import java.util.Base64;
-import java.util.List;
 
 @Component
 public class FirebaseRoute extends RouteBuilder {
@@ -23,25 +17,32 @@ public class FirebaseRoute extends RouteBuilder {
   @Value("${firebase.products}")
   private String prodcutsJson;
 
-  private ProductPostProcessor productPostProcessor;
+  private final ProductPostProcessor productPostProcessor;
+
+  private final ResponseBodyTransformer bodyTransformer;
 
   @Autowired
-    public FirebaseRoute(ProductPostProcessor productPostProcessor) {
-        this.productPostProcessor = productPostProcessor;
-    }
+  public FirebaseRoute(
+      ProductPostProcessor productPostProcessor, ResponseBodyTransformer bodyTransformer) {
+    this.productPostProcessor = productPostProcessor;
+    this.bodyTransformer = bodyTransformer;
+  }
 
-    @Override
+  @Override
   public void configure() throws Exception {
 
-    from("direct:postToFirebase")
+    from("direct:post")
         .process(productPostProcessor)
-        .setHeader(Exchange.HTTP_METHOD, constant("POST"))
+        .setHeader(Exchange.HTTP_METHOD, constant("PATCH"))
         .to(firebaseUrl + prodcutsJson)
         .transform()
-        .body(
-            bdy -> {
-              byte[] resp = (byte[]) bdy;
-                return new String(resp);
-            });
+        .body(bdy -> bodyTransformer.transFormBody((byte[]) bdy));
+
+    from("direct:getById")
+        .removeHeader(Exchange.HTTP_URI)
+        .setHeader(Exchange.HTTP_METHOD, constant("GET"))
+        .toD(firebaseUrl + prodcutsJson + "?orderBy=\"$key\"&equalTo=\"${header.id}\"")
+        .transform()
+        .body(bdy -> bodyTransformer.transFormBody((byte[]) bdy));
   }
 }

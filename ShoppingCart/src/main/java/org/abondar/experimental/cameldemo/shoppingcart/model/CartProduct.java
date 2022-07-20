@@ -11,8 +11,6 @@ import java.math.BigDecimal;
 @ToString
 public class CartProduct{
 
-
-   private String id;
    private String name;
    private String imgUrl;
    private BigDecimal price;

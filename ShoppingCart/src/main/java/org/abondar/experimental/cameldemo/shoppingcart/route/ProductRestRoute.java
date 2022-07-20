@@ -20,10 +20,11 @@ public class ProductRestRoute extends RouteBuilder {
             .type(CartProductRequest.class)
             .outType(CartProductPostResponse.class)
         .to("log:org.abondar.experimental.cameldemo.shoppingcart.route?level=INFO")
-            .to("direct:postToFirebase")
+            .to("direct:post")
 
         .get("/{id}")
             .outType(CartProduct.class)
-            .to("seda:out");
+            .to("log:org.abondar.experimental.cameldemo.shoppingcart.route?level=INFO")
+            .to("direct:getById");
   }
 }
