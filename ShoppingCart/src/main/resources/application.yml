@@ -16,6 +16,12 @@ camel:
     jackson:
       use-list: true
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: mappings,metrics,shutdown
+
 
 firebase:
   url: "https://shoppingcart-a62bb-default-rtdb.europe-west1.firebasedatabase.app/"
