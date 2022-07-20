@@ -18,6 +18,9 @@ public class FirebaseRoute extends RouteBuilder {
   @Value("${firebase.products}")
   private String prodcutsJson;
 
+  @Value("${firebase.cartItems}")
+  private String cartItemsJson;
+
   private final ProductProcessor productProcessor;
 
   private final ResponseBodyTransformer bodyTransformer;
@@ -30,7 +33,7 @@ public class FirebaseRoute extends RouteBuilder {
   }
 
   @Override
-  public void configure() throws Exception {
+  public void configure() {
 
     onException(HttpOperationFailedException.class)
             .handled(true)
@@ -60,5 +63,11 @@ public class FirebaseRoute extends RouteBuilder {
             .transform()
             .body(bdy -> bodyTransformer.transFormBody((byte[]) bdy));
 
+    from("direct:getItems")
+            .removeHeader(Exchange.HTTP_URI)
+            .setHeader(Exchange.HTTP_METHOD, constant("GET"))
+            .to(firebaseUrl+cartItemsJson)
+            .transform()
+            .body(bdy -> bodyTransformer.transFormBody((byte[]) bdy));
   }
 }

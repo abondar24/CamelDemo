@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductRestRoute extends RouteBuilder {
   @Override
-  public void configure() throws Exception {
+  public void configure(){
     rest()
-        .path("/product/api")
+        .path("/product")
             .consumes("application/json")
             .produces("application/json")
 
@@ -24,11 +24,13 @@ public class ProductRestRoute extends RouteBuilder {
             .to("direct:post")
 
         .get("/{id}")
+            .apiDocs(true)
             .outType(CartProduct.class)
             .to("log:org.abondar.experimental.cameldemo.shoppingcart.route?level=INFO")
             .to("direct:getById")
 
         .get()
+            .apiDocs(true)
             .param()
             .name("limit")
             .type(RestParamType.query)

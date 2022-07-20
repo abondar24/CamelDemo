@@ -5,7 +5,7 @@ import org.apache.camel.model.rest.RestBindingMode;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RestConfigRoute extends RouteBuilder {
+public class RestRouteConfig extends RouteBuilder {
 
   @Override
   public void configure() {
