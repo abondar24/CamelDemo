@@ -1,4 +1,4 @@
-package org.abondar.experimental.cameldemo.shoppingcart.route;
+package org.abondar.experimental.cameldemo.shoppingcart.config;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.rest.RestBindingMode;
@@ -14,7 +14,7 @@ public class RestRouteConfig extends RouteBuilder {
         .host("localhost")
         .port(8080)
         .enableCORS(true)
-        .contextPath("/")
+        .contextPath("/cart")
         .apiContextPath("/doc")
         .apiProperty("api.title", "Shopping Cart backend")
         .apiProperty("api.version", "v1")
