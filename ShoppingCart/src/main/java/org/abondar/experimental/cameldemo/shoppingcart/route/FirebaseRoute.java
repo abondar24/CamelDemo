@@ -26,8 +26,7 @@ public class FirebaseRoute extends RouteBuilder {
   private final ResponseBodyTransformer bodyTransformer;
 
   @Autowired
-  public FirebaseRoute(
-          ProductProcessor productProcessor, ResponseBodyTransformer bodyTransformer) {
+  public FirebaseRoute(ProductProcessor productProcessor, ResponseBodyTransformer bodyTransformer) {
     this.productProcessor = productProcessor;
     this.bodyTransformer = bodyTransformer;
   }
@@ -36,38 +35,39 @@ public class FirebaseRoute extends RouteBuilder {
   public void configure() {
 
     onException(HttpOperationFailedException.class)
-            .handled(true)
-            .to("log:org.abondar.experimental.cameldemo.shoppingcart.route?level=ERROR");
-
-
+        .handled(true)
+        .to("log:org.abondar.experimental.cameldemo.shoppingcart.route?level=ERROR");
 
     from("direct:post")
+            .routeId("postRoute")
         .process(productProcessor)
         .setHeader(Exchange.HTTP_METHOD, constant("PATCH"))
         .to(firebaseUrl + prodcutsJson)
         .transform()
-        .body(bdy -> bodyTransformer.transFormBody((byte[]) bdy));
+        .body(bodyTransformer::transformBody);
 
     from("direct:getById")
+            .routeId("getByIdRoute")
         .removeHeader(Exchange.HTTP_URI)
         .setHeader(Exchange.HTTP_METHOD, constant("GET"))
         .toD(firebaseUrl + prodcutsJson + "?orderBy=\"$key\"&equalTo=\"${header.id}\"")
         .transform()
-        .body(bdy -> bodyTransformer.transFormBody((byte[]) bdy));
-
+        .body(bodyTransformer::transformBody);
 
     from("direct:getByLimit")
-            .removeHeader(Exchange.HTTP_URI)
-            .setHeader(Exchange.HTTP_METHOD, constant("GET"))
-            .toD(firebaseUrl + prodcutsJson + "?orderBy=\"$key\"&limitToFirst=${header.limit}")
-            .transform()
-            .body(bdy -> bodyTransformer.transFormBody((byte[]) bdy));
+            .routeId("getByLimitRoute")
+        .removeHeader(Exchange.HTTP_URI)
+        .setHeader(Exchange.HTTP_METHOD, constant("GET"))
+        .toD(firebaseUrl + prodcutsJson + "?orderBy=\"$key\"&limitToFirst=${header.limit}")
+        .transform()
+        .body(bodyTransformer::transformBody);
 
     from("direct:getItems")
-            .removeHeader(Exchange.HTTP_URI)
-            .setHeader(Exchange.HTTP_METHOD, constant("GET"))
-            .to(firebaseUrl+cartItemsJson)
-            .transform()
-            .body(bdy -> bodyTransformer.transFormBody((byte[]) bdy));
+            .routeId("getItemsRoute")
+        .removeHeader(Exchange.HTTP_URI)
+        .setHeader(Exchange.HTTP_METHOD, constant("GET"))
+        .to(firebaseUrl + cartItemsJson)
+        .transform()
+        .body(bodyTransformer::transformBody);
   }
 }

@@ -1,14 +1,15 @@
 package org.abondar.experimental.cameldemo.shoppingcart.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.math.BigDecimal;
 
-@Getter
-@Setter
-@ToString
+@Data
+@AllArgsConstructor
 public class CartProduct{
 
    private String name;

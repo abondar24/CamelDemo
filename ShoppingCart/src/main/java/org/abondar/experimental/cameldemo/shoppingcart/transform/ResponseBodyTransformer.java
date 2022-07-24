@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 public class ResponseBodyTransformer {
 
 
-    public String transFormBody(byte[] body){
+    public String transformBody(Object body){
         byte[] resp = (byte[]) body;
         return new String(resp);
     }
