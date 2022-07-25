@@ -115,7 +115,7 @@ public class FirebaseRouteTest {
   @Test
   public void getItemTest() throws Exception {
 
-    var items = new CartItems(false, 0, false);
+    var items = new CartItems(false, 0, false,List.of());
     AdviceWith.adviceWith(
         producerTemplate.getCamelContext(),
         "getItemsRoute",

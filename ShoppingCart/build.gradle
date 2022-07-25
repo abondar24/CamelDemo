@@ -29,10 +29,24 @@ dependencies {
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.apache.camel:camel-test-spring-junit5:$camelVersion")
+    testImplementation("io.vertx:vertx-web-client:4.3.2")
 }
 
 test {
     useJUnitPlatform()
+    filter {
+        excludeTestsMatching("org.abondar.experimental.cameldemo.route.ItemRouteTest")
+    }
+}
+
+task integrationTest(type: Test) {
+    useJUnitPlatform()
+
+    filter{
+        excludeTestsMatching("org.abondar.experimental.cameldemo.route.FirebaseRouteTest")
+    }
+
+    systemProperty 'spring.profiles.active', 'integration'
 }
 
 bootBuildImage {
