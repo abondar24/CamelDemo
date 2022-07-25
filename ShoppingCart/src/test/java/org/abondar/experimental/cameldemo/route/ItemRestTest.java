@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @EnableAutoConfiguration
 @SpringBootTest(
     properties = {
-      "firebase.cartItems=https://shoppingcart-a62bb-default-rtdb.europe-west1.firebasedatabase.app/testItems.json"
+      "firebase.cartItems=testItems.json"
     },
     classes = {
       ItemRestRoute.class,
