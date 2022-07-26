@@ -6,6 +6,7 @@ import org.abondar.experimental.cameldemo.shoppingcart.model.CartProductRequest;
 import org.abondar.experimental.cameldemo.shoppingcart.processor.ProductProcessor;
 import org.abondar.experimental.cameldemo.shoppingcart.route.FirebaseRoute;
 import org.abondar.experimental.cameldemo.shoppingcart.transform.ResponseBodyTransformer;
+import org.abondar.experimental.cameldemo.shoppingcart.util.RouteUtil;
 import org.apache.camel.EndpointInject;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.builder.AdviceWith;
@@ -30,10 +31,10 @@ public class FirebaseRouteTest {
       "https://shoppingcart-a62bb-default-rtdb.europe-west1.firebasedatabase.app/products.json";
 
   private static final String MOCK_URI_GET_ID =
-      MOCK_URI + "?orderBy=\"$key\"&equalTo=\"${header.id}\"";
+      MOCK_URI + RouteUtil.GET_ID_QUERY;
 
   private static final String MOCK_URI_GET_LIMIT =
-      MOCK_URI + "?orderBy=\"$key\"&limitToFirst=${header.limit}";
+      MOCK_URI + RouteUtil.GET_LIMIT_QUERY;
 
   private static final String MOCK_URI_ITEM =
       "https://shoppingcart-a62bb-default-rtdb.europe-west1.firebasedatabase.app/cartItems.json";
@@ -58,14 +59,14 @@ public class FirebaseRouteTest {
 
     AdviceWith.adviceWith(
         producerTemplate.getCamelContext(),
-        "postRoute",
+        RouteUtil.POST_ROUTE,
         a ->
             a.interceptSendToEndpoint(MOCK_URI)
                 .skipSendToOriginalEndpoint()
                 .setBody(bdy -> new byte[45])
                 .to(postEndpoint.getEndpointUri()));
 
-    producerTemplate.sendBody("direct:post", body);
+    producerTemplate.sendBody(RouteUtil.POST_ENDPOINT, body);
 
     postEndpoint.expectedBodiesReceived(body);
     postEndpoint.expectedMessageCount(1);
@@ -78,14 +79,14 @@ public class FirebaseRouteTest {
 
     AdviceWith.adviceWith(
         producerTemplate.getCamelContext(),
-        "getByIdRoute",
+        RouteUtil.GET_ID_ROUTE,
         a ->
             a.weaveByType(ToDynamicDefinition.class)
                 .replace()
                 .setBody(bdy -> product.toString().getBytes())
                 .to(getIdEndpoint.getEndpointUri()));
 
-    producerTemplate.sendBodyAndHeader("direct:getById", null, "id", 1);
+    producerTemplate.sendBodyAndHeader(RouteUtil.GET_ID_ENDPOINT, null, "id", 1);
 
     getIdEndpoint.expectedHeaderReceived("id", 1);
     getIdEndpoint.expectedMessageCount(1);
@@ -98,16 +99,16 @@ public class FirebaseRouteTest {
 
     AdviceWith.adviceWith(
         producerTemplate.getCamelContext(),
-        "getByLimitRoute",
+        RouteUtil.GET_LIMIT_ROUTE,
         a ->
             a.weaveByType(ToDynamicDefinition.class)
                 .replace()
                 .setBody(bdy -> product.toString().getBytes())
                 .to(getLimitEndpoint.getEndpointUri()));
 
-    producerTemplate.sendBodyAndHeader("direct:getByLimit", null, "limit", 1);
+    producerTemplate.sendBodyAndHeader(RouteUtil.GET_LIMIT_ENDPOINT, null, "limit", 1);
 
-    getLimitEndpoint.expectedHeaderReceived("id", 1);
+    getLimitEndpoint.expectedHeaderReceived("limit", 1);
     getLimitEndpoint.expectedMessageCount(1);
     getLimitEndpoint.assertIsSatisfied();
   }
@@ -118,14 +119,14 @@ public class FirebaseRouteTest {
     var items = new CartItems(false, 0, false,List.of());
     AdviceWith.adviceWith(
         producerTemplate.getCamelContext(),
-        "getItemsRoute",
+            RouteUtil.GET_ITEM_ROUTE,
         a ->
             a.interceptSendToEndpoint(MOCK_URI_ITEM)
                 .skipSendToOriginalEndpoint()
                 .setBody(bdy -> items.toString().getBytes())
                 .to(getItemEndpoint.getEndpointUri()));
 
-    producerTemplate.sendBody("direct:getItems", null);
+    producerTemplate.sendBody(RouteUtil.GET_ITEMS_ENDPOINT, null);
 
     getItemEndpoint.expectedMessageCount(1);
     getItemEndpoint.assertIsSatisfied();

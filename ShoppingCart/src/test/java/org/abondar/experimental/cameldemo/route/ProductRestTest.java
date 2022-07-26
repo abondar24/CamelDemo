@@ -6,17 +6,13 @@ import org.abondar.experimental.cameldemo.shoppingcart.processor.ProductProcesso
 import org.abondar.experimental.cameldemo.shoppingcart.route.FirebaseRoute;
 import org.abondar.experimental.cameldemo.shoppingcart.route.ProductRestRoute;
 import org.abondar.experimental.cameldemo.shoppingcart.transform.ResponseBodyTransformer;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import java.math.BigDecimal;
@@ -40,7 +36,6 @@ public class ProductRestTest {
   private String testId;
 
   @Autowired private WebTestClient webTestClient;
-
 
   @Test
   @Order(1)

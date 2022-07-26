@@ -2,6 +2,7 @@ package org.abondar.experimental.cameldemo.shoppingcart.route;
 
 import org.abondar.experimental.cameldemo.shoppingcart.processor.ProductProcessor;
 import org.abondar.experimental.cameldemo.shoppingcart.transform.ResponseBodyTransformer;
+import org.abondar.experimental.cameldemo.shoppingcart.util.RouteUtil;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.http.base.HttpOperationFailedException;
@@ -36,34 +37,34 @@ public class FirebaseRoute extends RouteBuilder {
 
     onException(HttpOperationFailedException.class)
         .handled(true)
-        .to("log:org.abondar.experimental.cameldemo.shoppingcart.route?level=ERROR");
+        .to(RouteUtil.ERROR_LOG);
 
-    from("direct:post")
-            .routeId("postRoute")
+    from(RouteUtil.POST_ENDPOINT)
+            .routeId(RouteUtil.POST_ROUTE)
         .process(productProcessor)
         .setHeader(Exchange.HTTP_METHOD, constant("PATCH"))
         .to(firebaseUrl + prodcutsJson)
         .transform()
         .body(bodyTransformer::transformBody);
 
-    from("direct:getById")
-            .routeId("getByIdRoute")
+    from(RouteUtil.GET_ID_ENDPOINT)
+            .routeId(RouteUtil.GET_ID_ROUTE)
         .removeHeader(Exchange.HTTP_URI)
         .setHeader(Exchange.HTTP_METHOD, constant("GET"))
-        .toD(firebaseUrl + prodcutsJson + "?orderBy=\"$key\"&equalTo=\"${header.id}\"")
+        .toD(firebaseUrl + prodcutsJson + RouteUtil.GET_ID_QUERY)
         .transform()
         .body(bodyTransformer::transformBody);
 
-    from("direct:getByLimit")
-            .routeId("getByLimitRoute")
+    from(RouteUtil.GET_LIMIT_ENDPOINT)
+            .routeId(RouteUtil.GET_LIMIT_ROUTE)
         .removeHeader(Exchange.HTTP_URI)
         .setHeader(Exchange.HTTP_METHOD, constant("GET"))
-        .toD(firebaseUrl + prodcutsJson + "?orderBy=\"$key\"&limitToFirst=${header.limit}")
+        .toD(firebaseUrl + prodcutsJson + RouteUtil.GET_LIMIT_QUERY)
         .transform()
         .body(bodyTransformer::transformBody);
 
-    from("direct:getItems")
-            .routeId("getItemsRoute")
+    from(RouteUtil.GET_ITEMS_ENDPOINT)
+            .routeId(RouteUtil.GET_ITEM_ROUTE)
         .removeHeader(Exchange.HTTP_URI)
         .setHeader(Exchange.HTTP_METHOD, constant("GET"))
         .to(firebaseUrl + cartItemsJson)

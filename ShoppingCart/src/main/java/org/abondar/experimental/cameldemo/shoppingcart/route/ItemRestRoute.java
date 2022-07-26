@@ -1,6 +1,7 @@
 package org.abondar.experimental.cameldemo.shoppingcart.route;
 
 import org.abondar.experimental.cameldemo.shoppingcart.model.CartItems;
+import org.abondar.experimental.cameldemo.shoppingcart.util.RouteUtil;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +17,7 @@ public class ItemRestRoute extends RouteBuilder {
                    .get()
                    .apiDocs(true)
                    .outType(CartItems.class)
-                   .to("log:org.abondar.experimental.cameldemo.shoppingcart.route?level=INFO")
-                   .to("direct:getItems");
+                   .to(RouteUtil.INFO_LOG)
+                   .to(RouteUtil.GET_ITEMS_ENDPOINT);
     }
 }
