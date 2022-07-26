@@ -1,6 +1,6 @@
 # Shopping cart
 
-Camel + Spring Boot based shopping card react-app backend
+Camel + Spring Boot based [shopping cart react-app](https://github.com/abondar24/ReactDemo/tree/master/shopping-cart) backend.
 
 
 ## Build,test and run
@@ -25,6 +25,14 @@ Camel + Spring Boot based shopping card react-app backend
 ./gradlew clean test
 ```
 
+### Integration test
+
+```
+./gradlew clean integrationTest
+```
+
+Note: corresponding test data should be created in firebase
+
 ### Run
 
 - Run the app using gradlew
@@ -44,6 +52,13 @@ java -jar build/libs/ShoppingCart-1.0-SNAPSHOT.jar
 ```
 docker run -d --name todo  -p 8080:8080 abondar/shoppingCart
 ```
+
+## Endpoints
+
+- API reference: http://localhost:8080/swagger-ui/index.html
+- Actuator: http://localhost:8080/actuator
+
 ## Note
 
 - Change create log directory as mentioned in logback.xml file
+- Add exclusions to corresponding tasks in gradle when you add a new test class

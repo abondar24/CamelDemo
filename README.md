@@ -39,6 +39,8 @@ Some Camel Demos
 
 19. Some demos are in unit tests. See concurency and data conversion modules
 
+20. [Shopping cart](ShoppingCart/README.md) - Spring boot + Camel Rest
+
 Note: Arg name for running is in ()
 
 
